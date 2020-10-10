@@ -1,5 +1,7 @@
 import * as React from 'react'
 
 export default function IndexPost() {
-  return (<h1>Index</h1>)
+  return (
+    <h1>Index</h1>
+  )
 }
