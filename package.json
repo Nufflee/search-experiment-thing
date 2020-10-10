@@ -3,7 +3,7 @@
   "private": true,
   "description": "typescript, express, react starter with a shared client/server directory.",
   "scripts": {
-    "start": "nodemon --watch server --exec babel-node --  --extensions \".ts\" server/index.ts"
+    "start": "yarn nodemon --watch server --exec babel-node -- server/index.ts --extensions \".ts\" --exclude node_modules/"
   },
   "dependencies": {
     "@babel/node": "7.10.5",
