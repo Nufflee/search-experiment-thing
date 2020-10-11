@@ -3,6 +3,7 @@ export interface Post {
   content: string
   toc: string[]
   keywords: string[]
+  date: Date
 }
 
 export interface PostParams {

@@ -9,6 +9,7 @@
     "preserveConstEnums": true,
     "allowSyntheticDefaultImports": true, // TODO remove this line
     "sourceMap": true,
+    "downlevelIteration": true,
     "esModuleInterop": true,
     "paths": {
       "to-vfile": [

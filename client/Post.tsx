@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
+import { handleErrors } from './fetch'
 import { Post, PostParams } from 'shared/types'
 
 enum Status {
   Loading,
   Loaded,
   Error
-}
-
-function handleErrors(res: Response) {
-  if (!res.ok) {
-    throw new Error(res.statusText)
-  }
-
-  return res
 }
 
 export default function Post({ match }: RouteComponentProps<PostParams>) {

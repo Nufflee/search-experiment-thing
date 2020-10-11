@@ -12,8 +12,10 @@ export default function indexPosts(directory: string): Map<string, Post> {
       return
     }
 
-    const file = vfile.readSync(path.resolve(directory, fileName))
+    const filePath = path.resolve(directory, fileName)
+    const file = vfile.readSync(filePath)
 
+    // Extract the title (first heading node at depth 1 in the document)
     const children = remark().parse(file).children as Node[]
     const titleNode = children.find((node) => node.type === 'heading' && node.depth === 1) as Parent
     const title = titleNode.children[0].value as string
@@ -21,11 +23,16 @@ export default function indexPosts(directory: string): Map<string, Post> {
     // Add Table of Contents (ToC)
     const postprocessedContent = remark().use(toc).processSync(file)
 
+    const date = fs.statSync(filePath).mtime
+
     return [fileName, {
       title: title,
       content: postprocessedContent.contents as string,
+      // TODO: Store ToC here for search
       toc: [],
-      keywords: []
+      // TODO: Store keywords here for search
+      keywords: [],
+      date
     }]
   }))
 }
