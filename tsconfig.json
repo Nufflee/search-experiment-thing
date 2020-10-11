@@ -9,7 +9,12 @@
     "preserveConstEnums": true,
     "allowSyntheticDefaultImports": true, // TODO remove this line
     "sourceMap": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "to-vfile": [
+        "server/global.d.ts"
+      ]
+    }
   },
   "exclude": [
     "node_modules"
