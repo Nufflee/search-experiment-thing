@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import ReactMarkdown from 'react-markdown'
 import moment from 'moment'
-import { Post } from 'shared/types'
+import { IndexedPost } from 'shared/types'
 
 export default function IndexPage() {
   const [state, setState] = useState({
-    posts: [] as Post[]
+    posts: [] as IndexedPost[]
   })
 
   useEffect(() => {
@@ -41,22 +40,20 @@ export default function IndexPage() {
 }
 
 interface IndexPostProps {
-  post: Post
+  post: IndexedPost
 }
 
 function IndexPost(props: IndexPostProps) {
   const { post } = props
-  const content = post.content.substring(0, 100)
   const date = moment(post.date).format('Do MMM YYYY')
 
   return (
     <>
       <div style={{ display: 'flex', marginTop: '2em' }}>
-        <h1 style={{ flex: 1, margin: 0 }}>{post.title}</h1>
+        <h2 style={{ flex: 1, margin: 0 }}><a href={post.url}>{post.title}</a></h2>
         <p style={{ display: 'inline-block', margin: 'auto' }}>{date}</p>
       </div>
-      {/*<ReactMarkdown source={content} />*/}
-      <p style={{ wordWrap: 'break-word' }}>{content}</p>
+      <p style={{ wordWrap: 'break-word' }}>{post.shortContent}</p>
       <hr />
     </>
   )
