@@ -60,7 +60,11 @@ export default function indexPosts(directory: string): Map<string, Post> {
     // Generate shortened content (up to 200 characters of the first paragraph in the document)
     // TODO: Instead of converting to raw text leave as Markdown
     const firstParagrah = getTextFromNode(children.find((node) => node.type === 'paragraph'))
-    const shortContent = substringByWord(firstParagrah, 0, 200) + '...'
+    let shortContent = substringByWord(firstParagrah, 0, 200)
+
+    if (firstParagrah.length > 200) {
+      shortContent += '...'
+    }
 
     // Add Table of Contents (ToC)
     const postprocessedContent = remark().use(toc).processSync(file)
